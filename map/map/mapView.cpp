@@ -177,17 +177,28 @@ void CmapView::OnDraw(CDC* pDC)
 			}
 			tempDistence = distance[startMinPos];
 
-			startX = m_crossPoint[m_retouch].at(startMinPos).x;
-			startY = m_crossPoint[m_retouch].at(startMinPos).y;
+
+			
+			
+			
 			if(first){
 				pDC->MoveTo(temp[0]);
 				first = false;
 			}
+			else if ( distance[startMinPos] > sqrt(pow(startX - EndX, 2) + pow(startY - EndY, 2))){
+				pDC->MoveTo(temp[tempMinPos]);
+				pDC->LineTo(m_EndPoint[m_retouchSSE][0]);
+				return;
+			}
 			else {
 				pDC->MoveTo(temp[tempMinPos]);
 			}
+
 			pDC->LineTo(m_crossPoint[m_retouch][startMinPos]);
 			
+			
+			startX = m_crossPoint[m_retouch].at(startMinPos).x;
+			startY = m_crossPoint[m_retouch].at(startMinPos).y;
 			temp = m_crossPoint[m_retouch];
 			tempMinPos = startMinPos;
 		}
