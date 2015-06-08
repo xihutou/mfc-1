@@ -3,7 +3,8 @@
 //
 
 #pragma once
-
+#include <cmath>
+using namespace std;
 
 class CmapView : public CView
 {
@@ -60,6 +61,18 @@ public:
 	afx_msg void OnConnet();
 	int m_retouch;
 	afx_msg void OnProcessReTouch();
+	afx_msg void OnSetOptimalPath();
+	afx_msg void OnLButtonUp(UINT nFlags, CPoint point);
+	bool isOptimalPath;
+	afx_msg void OnSetStartEnd();
+	bool isSetStartEnd;
+	int m_retouchSSE;
+	vector <CPoint> m_StartPoint[100];
+	vector <CPoint> m_EndPoint[100];
+	afx_msg void OnRetouchStartEnd();
+	afx_msg void OnSetStartEndPointOver();
+	int isStartEndConnet;
+	afx_msg void OnStartEndConnet();
 };
 
 #ifndef _DEBUG  // mapView.cpp의 디버그 버전
