@@ -33,6 +33,9 @@ BEGIN_MESSAGE_MAP(CmapView, CView)
 	ON_COMMAND(ID_32773, &CmapView::OnRequestGridMap)
 	ON_COMMAND(ID_32774, &CmapView::OnSetCrossPoint)
 	ON_COMMAND(ID_32778, &CmapView::OnSetCrossPointEnd)
+	ON_COMMAND(ID_32776, &CmapView::OnReTouch)
+	ON_COMMAND(ID_32775, &CmapView::OnConnet)
+	ON_COMMAND(ID_32779, &CmapView::OnProcessReTouch)
 END_MESSAGE_MAP()
 
 // CmapView 생성/소멸
@@ -41,6 +44,7 @@ CmapView::CmapView()
 	: isColorGet(false)
 	, isSetCrossPoint(false)
 	, isConnet(false)
+	, m_retouch(0)
 {
 	// TODO: 여기에 생성 코드를 추가합니다.
 
@@ -78,23 +82,23 @@ void CmapView::OnDraw(CDC* pDC)
 
 	}
 
-	CPen redPen, *pOldPen;
+	CPen bluePen, *pOldPen;
 
-	redPen.CreatePen(PS_SOLID, 5, RGB(255, 0, 0));
-	pOldPen = pDC->SelectObject(&redPen);
+	bluePen.CreatePen(PS_SOLID, 5, RGB(0, 0, 255));
+	pOldPen = pDC->SelectObject(&bluePen);
 
 	int scale = 2;
-	for(int i = 0;i<m_crossPoint.size();i++){
-		pDC->Ellipse(m_crossPoint.at(i).x - scale, m_crossPoint.at(i).y - scale, m_crossPoint.at(i).x + scale, m_crossPoint.at(i).y + scale);
+	for(int i = 0;i<m_crossPoint[m_retouch].size();i++){
+		pDC->Ellipse(m_crossPoint[m_retouch].at(i).x - scale, m_crossPoint[m_retouch].at(i).y - scale, m_crossPoint[m_retouch].at(i).x + scale, m_crossPoint[m_retouch].at(i).y + scale);
 
 	}
-	pOldPen = pDC->SelectObject(&redPen);
+	pOldPen = pDC->SelectObject(&bluePen);
 
 	if(isConnet){
-	for(int i = 0; i<m_crossPoint.size()+1; i++){	
-		pDC->MoveTo(m_crossPoint[i]);
-		pDC->LineTo(m_crossPoint[i+1]);
-		pDC->SelectObject(&redPen);
+	for(int i = 0; i<m_crossPoint[m_retouch].size()-1; i++){	
+		pDC->MoveTo(m_crossPoint[m_retouch][i]);
+		pDC->LineTo(m_crossPoint[m_retouch][i+1]);
+		pDC->SelectObject(&bluePen);
 	}
 	}
 	CDC memDC;
@@ -139,7 +143,7 @@ void CmapView::OnRButtonUp(UINT nFlags, CPoint point)
 	}
 	if (isSetCrossPoint)
 	{
-		m_crossPoint.push_back(point);
+		m_crossPoint[m_retouch].push_back(point);
 		Invalidate();
 	}
 
@@ -210,6 +214,7 @@ void CmapView::OnRequestGridMap()
 void CmapView::OnSetCrossPoint()
 {
 	isSetCrossPoint = true;
+	isConnet = false;
 	Invalidate();
 
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
@@ -219,6 +224,30 @@ void CmapView::OnSetCrossPoint()
 void CmapView::OnSetCrossPointEnd()
 {
 	isSetCrossPoint = false;
+	isConnet = false;
 	Invalidate();
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CmapView::OnReTouch()
+{
+	m_retouch++;
+	Invalidate();
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CmapView::OnConnet()
+{
+	isConnet = true;
+	Invalidate();
+	// TODO: 여기에 명령 처리기 코드를 추가합니다.
+}
+
+
+void CmapView::OnProcessReTouch()
+{
+	m_retouch ++;
 	// TODO: 여기에 명령 처리기 코드를 추가합니다.
 }

@@ -54,8 +54,12 @@ public:
 	afx_msg void OnSetCrossPoint();
 	afx_msg void OnSetCrossPointEnd();
 	bool isSetCrossPoint;
-	vector <CPoint> m_crossPoint;
+	vector <CPoint> m_crossPoint[100];
 	bool isConnet;
+	afx_msg void OnReTouch();
+	afx_msg void OnConnet();
+	int m_retouch;
+	afx_msg void OnProcessReTouch();
 };
 
 #ifndef _DEBUG  // mapView.cpp의 디버그 버전
