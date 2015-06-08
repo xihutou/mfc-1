@@ -1,4 +1,4 @@
-﻿빌드 시작: 2015-06-08 오후 9:28:05
+﻿빌드 시작: 2015-06-08 오후 10:26:27
      1>2 노드의 "C:\Workspace\git\mfc\map\map\map.vcxproj" 프로젝트(build 대상)입니다.
      1>InitializeBuildStatus:
          "AlwaysCreate"이(가) 지정되었기 때문에 "Debug\map.unsuccessfulbuild"을(를) 만들고 있습니다.
@@ -10,12 +10,10 @@
      1>c:\workspace\git\mfc\map\map\mapview.cpp(108): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
      1>c:\workspace\git\mfc\map\map\mapview.cpp(128): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
      1>c:\workspace\git\mfc\map\map\mapview.cpp(135): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>c:\workspace\git\mfc\map\map\mapview.cpp(153): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
      1>c:\workspace\git\mfc\map\map\mapview.cpp(161): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>c:\workspace\git\mfc\map\map\mapview.cpp(164): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
-     1>c:\workspace\git\mfc\map\map\mapview.cpp(169): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>c:\workspace\git\mfc\map\map\mapview.cpp(177): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
-     1>c:\workspace\git\mfc\map\map\mapview.cpp(180): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
+     1>c:\workspace\git\mfc\map\map\mapview.cpp(163): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+     1>c:\workspace\git\mfc\map\map\mapview.cpp(171): warning C4018: '<' : signed 또는 unsigned가 일치하지 않습니다.
+     1>c:\workspace\git\mfc\map\map\mapview.cpp(174): warning C4244: '=' : 'double'에서 'int'(으)로 변환하면서 데이터가 손실될 수 있습니다.
        ResourceCompile:
          모든 출력이 최신 상태입니다.
        ManifestResourceCompile:
@@ -41,4 +39,4 @@
 
 빌드했습니다.
 
-경과 시간: 00:00:01.37
+경과 시간: 00:00:01.09

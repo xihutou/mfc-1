@@ -67,6 +67,7 @@ public:
 	afx_msg void OnSetStartEnd();
 	bool isSetStartEnd;
 	int m_retouchSSE;
+	
 	vector <CPoint> m_StartPoint[100];
 	vector <CPoint> m_EndPoint[100];
 	afx_msg void OnRetouchStartEnd();

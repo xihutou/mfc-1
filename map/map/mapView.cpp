@@ -150,23 +150,50 @@ void CmapView::OnDraw(CDC* pDC)
 		double EndY = m_EndPoint[m_retouchSSE].at(0).y;
 		double distance[200];
 
-		for(int i = 0; i<m_crossPoint[m_retouch].size(); i++){
-			double catchX = m_crossPoint[m_retouch].at(i).x;
-			double catchY = m_crossPoint[m_retouch].at(i).y;
-			distance[i] = sqrt(pow(startX - catchX, 2) + pow(startY - catchY, 2));
-		}
+		double distanceSE = sqrt(pow(startX - EndX, 2) + pow(startY - EndY, 2));
 
-		int startMin = 0;
-		int startMinPos = 0;
-		for (int i = 0; i <m_crossPoint[m_retouch].size() - 1 ; i++){
+		vector <CPoint> temp = m_StartPoint[m_retouchSSE];
+		int tempMinPos=0;
+		bool first = true;
+
+		double tempDistence=0;
+
+		for(int j = 0; j < m_crossPoint[m_retouch].size(); j++){
 			
-			if(startMin > distance[i]){ 
-				startMin = distance[i];
-				startMinPos = i;
+			for(int i = 0; i<m_crossPoint[m_retouch].size(); i++){
+				double catchX = m_crossPoint[m_retouch].at(i).x;
+				double catchY = m_crossPoint[m_retouch].at(i).y;
+				distance[i] = sqrt(pow(startX - catchX, 2) + pow(startY - catchY, 2));
 			}
-		}
 
-		for(int i = 0; i<m_crossPoint[m_retouch].size(); i++){
+			int startMin = 0xffff;
+			int startMinPos = 0;
+			for (int i = 0; i <m_crossPoint[m_retouch].size() - 1 ; i++){
+			
+				if( (startMin > distance[i]) && (distance[i] < distanceSE) && (distance[i] > 0) && (distance[i] != tempDistence)){ 
+					startMin = distance[i];
+					startMinPos = i;
+				}
+			}
+			tempDistence = distance[startMinPos];
+
+			startX = m_crossPoint[m_retouch].at(startMinPos).x;
+			startY = m_crossPoint[m_retouch].at(startMinPos).y;
+			if(first){
+				pDC->MoveTo(temp[0]);
+				first = false;
+			}
+			else {
+				pDC->MoveTo(temp[tempMinPos]);
+			}
+			pDC->LineTo(m_crossPoint[m_retouch][startMinPos]);
+			
+			temp = m_crossPoint[m_retouch];
+			tempMinPos = startMinPos;
+		}
+		//pDC->MoveTo(temp[tempMinPos]);
+		//pDC->LineTo(m_EndPoint[m_retouchSSE][0]);
+		/*for(int i = 0; i<m_crossPoint[m_retouch].size(); i++){
 			double catchX = m_crossPoint[m_retouch].at(i).x;
 			double catchY = m_crossPoint[m_retouch].at(i).y;
 			distance[i] = sqrt(pow(EndX - catchX, 2) + pow(EndY - catchY, 2));
@@ -180,14 +207,13 @@ void CmapView::OnDraw(CDC* pDC)
 				EndMin = distance[i];
 				EndMinPos = i;
 			}
-		}
+		}*/
 		
 			
-		pDC->MoveTo(m_StartPoint[m_retouchSSE][0]);
-		pDC->LineTo(m_crossPoint[m_retouch][startMinPos]);
+	
 
-		pDC->MoveTo(m_EndPoint[m_retouchSSE][0]);
-		pDC->LineTo(m_crossPoint[m_retouch][EndMinPos]);
+	/*	pDC->MoveTo(m_EndPoint[m_retouchSSE][0]);
+		pDC->LineTo(m_crossPoint[m_retouch][EndMinPos]);*/
 		
 			
 		}
